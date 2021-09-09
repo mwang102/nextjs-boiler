@@ -1,1 +1,1 @@
-# nextjs-boiler
+This is a nextjs boiler plate
