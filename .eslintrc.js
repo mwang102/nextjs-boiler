@@ -15,5 +15,6 @@ module.exports = {
   rules: {
     "react/prop-types": "off",
     "react/jsx-props-no-spreading": "off",
+    "no-unused-vars": "warn",
   },
 };
