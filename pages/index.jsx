@@ -11,11 +11,13 @@ const homeContainerStyles = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 25px;
-  border: 3px solid #dea5a4;
+  border-radius: 50px;
+  border: 5px solid #dea5a4;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+  background: white;
 
   ${media.greaterThan(defaultBreakpoints.medium)`
-    border: 3px solid #CCD4BF;
+    border: 5px solid black;
   `};
 `;
 
@@ -29,7 +31,7 @@ const titleStyles = css`
 
 export default function Home() {
   return (
-    <Layout>
+    <div>
       <Head>
         <title>Create Next Boiler</title>
         <link rel="icon" href="/favicon.ico" />
@@ -38,6 +40,6 @@ export default function Home() {
       <section css={homeContainerStyles}>
         <h1 css={titleStyles}>Welcome to the bOilEr</h1>
       </section>
-    </Layout>
+    </div>
   );
 }

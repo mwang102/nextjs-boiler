@@ -47,6 +47,39 @@ const mainStyles = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+
+  font-family: "Questrial", sans-serif;
+  background-color: #ffec63;
+  background-image: linear-gradient(
+      45deg,
+      #ffd966 25%,
+      transparent 25%,
+      transparent 75%,
+      #ffd966 75%,
+      #ffd966
+    ),
+    linear-gradient(
+      -45deg,
+      #ffd966 25%,
+      transparent 25%,
+      transparent 75%,
+      #ffd966 75%,
+      #ffd966
+    );
+  background-size: 60px 60px;
+  background-position: 0 0;
+  animation: slide 4s infinite linear;
+
+  @keyframes slide {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -120px 60px;
+    }
+  }
 `;
 
 const Layout = ({ children }) => (
