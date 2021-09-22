@@ -46,8 +46,8 @@ const buttonStyles = css`
   }
 `;
 
-const Button = ({ text }) => (
-  <button css={buttonStyles} type="button">
+const Button = ({ text, onClick }) => (
+  <button onClick={onClick} css={buttonStyles} type="button">
     {text}
   </button>
 );

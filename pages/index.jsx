@@ -1,86 +1,68 @@
 import Head from "next/head";
-import Link from "next/link";
 import { css } from "@emotion/react";
-import Layout from "../components/Layout";
-import Button from "../components/Button";
+import { useState } from "react";
+import TombStone from "../components/TombStone";
+import OpacityTransition from "../utils/OpacityTransition";
 
-import media, { defaultBreakpoints } from "../utils/mediaStyles";
-
-const homeContainerStyles = css`
-  width: 300px;
-  height: 500px;
+const tombStoneStyles = css`
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 50px;
-  border: 3px solid #dea5a4;
-  // box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
-  background: white;
-
-  transform: translatey(0px);
-  animation: float 6s ease-in-out infinite;
-
-  @keyframes float {
-    0% {
-      // box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
-
-      box-shadow: inset 8px -8px 0 0 white, inset 8px -8px 0 3px #dea5a4,
-        -8px 8px 0 rgba(0, 0, 0, 0.6);
-      transform: translatey(0px);
-    }
-    50% {
-      // box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
-
-      box-shadow: inset 8px -8px 0 0 white, inset 8px -8px 0 3px #dea5a4,
-        -16px 16px 0 rgba(0, 0, 0, 0.4);
-      transform: translatey(-10px);
-    }
-    100% {
-      // box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
-
-      box-shadow: inset 8px -8px 0 0 white, inset 8px -8px 0 3px #dea5a4,
-        -8px 8px 0 rgba(0, 0, 0, 0.6);
-      transform: translatey(0px);
-    }
-  }
-
-  ${media.greaterThan(defaultBreakpoints.medium)`
-    border: 3px solid #dea5a4;
-  `};
-`;
-
-const titleStyles = css`
-  color: #ccd4bf;
-  font-size: 36px;
-  white-space: pre;
-  text-shadow: -1px 1px 0 #dea5a4, -2px 2px 0 #dea5a4, -3px 3px 0 #dea5a4,
-    -4px 4px 0 #dea5a4, -5px 5px 0 #dea5a4;
-  ${media.greaterThan(defaultBreakpoints.medium)`
-    color: #CCD4BF;
-`};
-`;
-
-const buttonGroupStyles = css`
-  display: flex;
+  position: relative;
 `;
 
 export default function Home() {
+  const [openTomb, setOpenTomb] = useState(0);
+
   const titleText = "WELCOME\nTO\nTHE\nBOILER";
+  const titleStepOne = "STEP\nONE";
+  const titleStepTwo = "STEP\nTWO";
+  const titleStepThree = "STEP\nTHREE";
+
+  const handleNext = () => {
+    console.log("logging");
+    setOpenTomb((openTomb + 1) % 4);
+  };
+
+  const handlePrevious = () => {
+    console.log("logging");
+    setOpenTomb((openTomb === 0 ? 3 : openTomb - 1) % 4);
+  };
+
   return (
     <div>
       <Head>
         <title>Create Next Boiler</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <section css={homeContainerStyles}>
-        <h1 css={titleStyles}>{titleText}</h1>
-        <div css={buttonGroupStyles}>
-          <Button text="Click" />
-          <Button text="Click" />
-        </div>
-      </section>
+      <div css={tombStoneStyles}>
+        <OpacityTransition in={openTomb === 0}>
+          <TombStone
+            onClickPrev={handlePrevious}
+            onClickNext={handleNext}
+            text={titleText}
+          />
+        </OpacityTransition>
+        <OpacityTransition in={openTomb === 1}>
+          <TombStone
+            onClickPrev={handlePrevious}
+            onClickNext={handleNext}
+            text={titleStepOne}
+          />
+        </OpacityTransition>
+        <OpacityTransition in={openTomb === 2}>
+          <TombStone
+            onClickPrev={handlePrevious}
+            onClickNext={handleNext}
+            text={titleStepTwo}
+          />
+        </OpacityTransition>
+        <OpacityTransition in={openTomb === 3}>
+          <TombStone
+            onClickPrev={handlePrevious}
+            onClickNext={handleNext}
+            text={titleStepThree}
+          />
+        </OpacityTransition>
+      </div>
     </div>
   );
 }

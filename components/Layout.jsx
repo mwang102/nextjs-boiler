@@ -46,7 +46,7 @@ const mainStyles = css`
   flex: 1 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: top;
   width: 100%;
 
   font-family: "Questrial", sans-serif;
