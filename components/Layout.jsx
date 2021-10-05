@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import Head from "next/head";
 import media, { defaultBreakpoints } from "../utils/mediaStyles";
+import PromiseQueueProvider from "../js-machine/PromiseQueue.jsx";
 
 const headerStyles = css`
   width: 100%;
@@ -60,7 +61,9 @@ const Layout = ({ children }) => (
     <header css={headerStyles}>
       <h1>Header</h1>
     </header>
-    <main css={mainStyles}>{children}</main>
+    <PromiseQueueProvider>
+      <main css={mainStyles}>{children}</main>
+    </PromiseQueueProvider>
     <footer css={footerStyles}>
       <h1>Footer</h1>
     </footer>
