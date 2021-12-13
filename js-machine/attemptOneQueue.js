@@ -21,7 +21,7 @@ export const getTime = () => {
 // var dateTime = time;
 
 export const promiseTransaction = (time) => {
-  console.log(getTime(), "start time---");
+  console.log(getTime(), "start time--- ");
   return () =>
     new Promise((res, rej) => {
       setTimeout(() => {
